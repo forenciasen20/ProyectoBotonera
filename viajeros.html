@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botonera VIAJEROS</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .contenedor-kb {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-kb {
+            background-color: #45b2b6; 
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 4px 4px 0 0;
+            margin-bottom: 15px;
+        }
+
+        .botonera-opciones {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .boton-opcion {
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            cursor: pointer ;
+            border-radius: 4px;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .boton-opcion:hover {
+            background-color: #61a9da;
+        }
+
+        .boton-opcion.activo {
+            background-color: #a728a7; 
+            color: white;
+            border-color: #c7e039;
+        }
+
+        .contenido-procedimiento {
+            min-height: 150px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        .contenido-procedimiento h4 {
+            color: #45b2b6;
+            margin-top: 0;
+        }
+
+        .contenido-procedimiento ul {
+            padding-left: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .procedimiento-detalle {
+            display: none;
+        }
+
+        .procedimiento-detalle.activo {
+            display: block;
+        }
+        .boton-volver {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #7f8c8d;
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer; 
+            transition: background-color 0.2s;
+        }
+
+        .boton-volver:hover {
+            background-color: #95a5a6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor-kb">
+        <div class="header-kb">VIAJEROS</div>
+
+        <div class="botonera-opciones">
+            <button class="boton-opcion" data-target="tarjeta1">1 TARJETA</button>
+            <button class="boton-opcion" data-target="tarjetas2">+2 TARJETAS</button>
+            <button class="boton-opcion" data-target="debitos">DÉBITOS</button>
+            <button class="boton-opcion" data-target="commercial">COMMERCIAL CARDS</button>
+            <button class="boton-opcion" data-target="mastercard">MASTERCARD</button>
+        </div>
+
+        <div class="contenido-procedimiento">
+            
+            <div id="instruccion-inicial" class="procedimiento-detalle activo">
+                <h4>Seleccione una opción de procedimiento</h4>
+                <p>Haga clic en uno de los botones de arriba para ver las instrucciones específicas sobre el registro de viajes.</p>
+            </div>
+
+            <div id="tarjeta1" class="procedimiento-detalle">
+                <h4>Procedimiento: 1 TARJETA</h4>
+                <ul>
+                    <li>Desde el Módulo Administrador del sitio Mis Tarjetas / opción Login Remoto.</li>
+                    <li>En la opción MIS GESTIONES / Registro de Viajes.</li>
+                </ul>
+            </div>
+
+            <div id="tarjetas2" class="procedimiento-detalle">
+                <h4>Procedimiento: +2 TARJETAS</h4>
+                <ul>
+                    <li>Desde el Módulo Administrador del sitio Mis Tarjetas / opción Login Remoto.</li>
+                    <li>En la opción MIS GESTIONES / Registro de Viajes.</li>
+                    <li>Se deberá realizar **un registro para cada Banco**.</li>
+                    <li>En cada registro por Banco se podrán incluir:
+                        <ul>
+                            <li>Tarjetas de crédito (Visa, Amex y Mastercard) del Titular y/o de los Adicionales.</li>
+                            <li>Tarjetas Visa Débito.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="debitos" class="procedimiento-detalle">
+                <h4>Procedimiento: DÉBITOS</h4>
+                <ul>
+                    <li>Aplica el procedimiento general: Módulo Administrador / Login Remoto / Registro de Viajes.</li>
+                    <li>Solo se pueden registrar **Tarjetas Visa Débito**.</li>
+                    <li>Recuerde que el registro se realiza **por Banco**.</li>
+                </ul>
+            </div>
+
+            <div id="commercial" class="procedimiento-detalle">
+                <h4>Procedimiento: COMMERCIAL CARDS</h4>
+                <ul>
+                    <li>Los **Titulares** solo pueden informar el viaje de **su tarjeta** (marca únicamente de su tarjeta). No pueden ingresar marca a otras tarjetas de la Cuenta.</li>
+                    <li>El **Administrador de la Cuenta** Commercial Card puede registrar el viaje de cualquier tarjeta de la Cuenta.</li>
+                    <li>Si un socio comenta que viaja con alguna persona que posee tarjeta pero no es integrante de su Cuenta, sugiérale que dicha persona también nos contacte.</li>
+                </ul>
+            </div>
+
+            <div id="mastercard" class="procedimiento-detalle">
+                <h4>Procedimiento: MASTERCARD</h4>
+                <ul>
+                    <li>Siga el procedimiento de **+2 TARJETAS** (aplica la misma lógica para incluir tarjetas de crédito Mastercard del Titular y/o Adicionales).</li>
+                    <li>Se debe realizar un registro separado **por cada Banco emisor**.</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    
+    <a href="#" onclick="history.back();" class="boton-volver">⬅️ Volver al Menú Principal</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botones = document.querySelectorAll('.boton-opcion');
+            const procedimientos = document.querySelectorAll('.procedimiento-detalle');
+            const instruccionInicial = document.getElementById('instruccion-inicial');
+
+            botones.forEach(boton => {
+                boton.addEventListener('click', () => {
+                    procedimientos.forEach(p => p.classList.remove('activo'));
+                    botones.forEach(b => b.classList.remove('activo'));
+                    if (instruccionInicial) {
+                        instruccionInicial.classList.remove('activo');
+                    }
+
+                    const targetId = boton.getAttribute('data-target');
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        targetElement.classList.add('activo');
+                        boton.classList.add('activo');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

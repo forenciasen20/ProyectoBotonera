@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botonera ZEUS/LYNX</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .contenedor-kb {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header-kb {
+            background-color: #f39c12; 
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 4px 4px 0 0;
+            margin-bottom: 15px;
+        }
+        .botonera-opciones {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 10px; 
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .boton-opcion {
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            cursor: pointer ;
+            border-radius: 4px;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .boton-opcion:hover {
+            background-color: #f8c471;
+        }
+        .boton-opcion.activo {
+            background-color: #a728a7; 
+            color: white;
+            border-color: #c7e039;
+        }
+        .contenido-procedimiento {
+            min-height: 150px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+        .contenido-procedimiento h4 {
+            color: #f39c12;
+            margin-top: 0;
+        }
+        .contenido-procedimiento ul {
+            padding-left: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .procedimiento-detalle {
+            display: none;
+        }
+        .procedimiento-detalle.activo {
+            display: block;
+        }
+        /* Estilo para el botón de Volver */
+        .boton-volver {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #7f8c8d;
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .boton-volver:hover {
+            background-color: #95a5a6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor-kb">
+        <div class="header-kb">PROCEDIMIENTOS ZEUS/LYNX</div>
+
+        <div class="botonera-opciones">
+            <button class="boton-opcion" data-target="ipe_token_ok">IPE OK / TOKEN OK</button>
+            <button class="boton-opcion" data-target="ipb_ok">IPB OK</button>
+            <button class="boton-opcion" data-target="ip_no_ok">IP NO OK</button>
+            <button class="boton-opcion" data-target="sin_ip">SIN IP</button>
+        </div>
+
+        <div class="contenido-procedimiento">
+            
+            <div id="instruccion-inicial" class="procedimiento-detalle activo">
+                <h4>Seleccione el estado de la IP y Token</h4>
+                <p>Haga clic en uno de los botones de arriba para ver las instrucciones específicas.</p>
+            </div>
+
+            <div id="ipe_token_ok" class="procedimiento-detalle">
+                <h4>Procedimiento: IPE OK / TOKEN OK</h4>
+                <p>Instrucciones específicas para IPE OK / TOKEN OK.</p>
+                <ul>
+                    <li>Paso 1: XXXXX X.</li>
+                    <li>Paso 2: XXXXX.</li>
+                </ul>
+            </div>
+
+            <div id="ipb_ok" class="procedimiento-detalle">
+                <h4>Procedimiento: IPB OK</h4>
+                <p>Instrucciones específicas para IPB OK.</p>
+                <ul>
+                    <li>Paso 1: XXXX</li>
+                    <li>Paso 2: XXXXX.</li>
+                </ul>
+            </div>
+
+            <div id="ip_no_ok" class="procedimiento-detalle">
+                <h4>Procedimiento: IP NO OK</h4>
+                <p>Pasos a seguir cuando la IP no es correcta.</p>
+                <ul>
+                    <li>Paso 1: XXXX.</li>
+                    <li>Paso 2: XXXXX.</li>
+                </ul>
+            </div>
+
+            <div id="sin_ip" class="procedimiento-detalle">
+                <h4>Procedimiento: SIN IP</h4>
+                <p>Qué hacer cuando no hay información de IP disponible.</p>
+                <ul>
+                    <li>Paso 1: XXX.</li>
+                    <li>Paso 2: XXXX.</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    <a href="#" onclick="history.back();" class="boton-volver">⬅️ Volver al Menú Principal</a>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botones = document.querySelectorAll('.boton-opcion');
+            const procedimientos = document.querySelectorAll('.procedimiento-detalle');
+            const instruccionInicial = document.getElementById('instruccion-inicial');
+
+            botones.forEach(boton => {
+                boton.addEventListener('click', () => {
+                    procedimientos.forEach(p => p.classList.remove('activo'));
+                    botones.forEach(b => b.classList.remove('activo'));
+                    if (instruccionInicial) {
+                        instruccionInicial.classList.remove('activo');
+                    }
+
+                    const targetId = boton.getAttribute('data-target');
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        targetElement.classList.add('activo');
+                        boton.classList.add('activo');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
